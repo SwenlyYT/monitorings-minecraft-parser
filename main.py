@@ -44,6 +44,8 @@ for i in servers:
     cur_online = f'{list[0]} {list[1]} {list[2]}'
     if need_no_online == 'да':
         if list[0] == '0': continue
+    try: a = ip.text
+    except: continue
     print('Сервер')
     print('-' * len(f' Название сервера: "{name.text}"'))
     print(f' Название сервера: {name.text}')
@@ -74,6 +76,8 @@ for i in servers:
     if need_no_online == 'да':
         if str(online) == '0': continue
     if 'Offline' in name.text or 'License only' in name.text: continue
+    try: a = ip.text
+    except: continue
     print('Сервер')
     print('-' * len(f'Название сервера: "{name.text}"'))
     print(f' Название сервера: "{name.text}"')
@@ -102,6 +106,8 @@ for i in servers:
             continue
     if need_no_online == 'да':
         if str(online) == '0': continue
+    try: a = ip.text
+    except: continue
     print('Сервер')
     print('-' * len(f'Название сервера: "{name.text}"'))
     print(f' Название сервера: "{name.text}"')
