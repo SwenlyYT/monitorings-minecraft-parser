@@ -23,8 +23,9 @@ if _min_online == '' or _min_online == '\n': min_online = 'all'
 else: min_online = _min_online
 print()
 
-servers = soup.find_all('tr', class_='server')
-for i in servers:
+#!monitoring-minecraft
+mm_servers = soup.find_all('tr', class_='server')
+for i in mm_servers:
     if 'Offline' in i.text: continue
     name = i.find(class_='name')
     ip = i.find('td', class_='ip').find('span', class_='ip_serv')
@@ -54,17 +55,19 @@ for i in servers:
     print(f' Айпи: {ip.text} ')
     print('-' * len(f' Название сервера: "{name.text}"'))
 
+#*MinecraftRating
 r = requests.get('https://minecraftrating.ru/new-servers/')
 soup = BS(r.content, 'html.parser')
 
-servers = soup.find_all('tr', class_='server-new')
-for i in servers:
+mr_servers = soup.find_all('tr', class_='server-new')
+for i in mr_servers:
     if 'Offline' in i.text or 'block ip has-launch' in i.text: continue
     if i.find('td', class_='block ip has-launch'): continue
     name = i.find('h3', class_='name')
     ip = i.find('var', class_='tooltip')
     try: a = ip.text
     except: continue
+    if ip.text in mm_servers: continue
     if aternos == 'да':
         if 'aternos' in ip.text: continue
         if ip.text.startswith('185'): continue
@@ -86,16 +89,17 @@ for i in servers:
     print(f' Айпи: {ip.text}')
     print('-' * len(f'Название сервера: "{name.text}"'))
 
+#*Misterlauncher
 r = requests.get('https://misterlauncher.org/servera-novye/')
 soup = BS(r.content, 'html.parser')
 
-servers_list = soup.find('div', class_='servers-list')
-servers = servers_list.find_all('div', class_='server')
-for i in servers:
+ml_servers = soup.find('div', class_='servers-list').find_all('div', class_='server')
+for i in ml_servers:
     name = i.find('h3', class_='name')
     ip = i.find('kbd')
     try: a = ip.text
     except: continue
+    if ip.text in mm_servers or ip.text in mr_servers: continue
     if aternos == 'да':
         if 'aternos' in ip.text: continue
         if ip.text.startswith('185'): continue
