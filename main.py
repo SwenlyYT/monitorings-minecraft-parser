@@ -28,6 +28,8 @@ for i in servers:
     if 'Offline' in i.text: continue
     name = i.find(class_='name')
     ip = i.find('td', class_='ip').find('span', class_='ip_serv')
+    try: a = ip.text
+    except: continue
     if aternos == 'да':
         if 'aternos' in ip.text: continue
         if ip.text.startswith('185'): continue
@@ -44,8 +46,6 @@ for i in servers:
     cur_online = f'{list[0]} {list[1]} {list[2]}'
     if need_no_online == 'да':
         if list[0] == '0': continue
-    try: a = ip.text
-    except: continue
     print('Сервер')
     print('-' * len(f' Название сервера: "{name.text}"'))
     print(f' Название сервера: {name.text}')
@@ -63,6 +63,8 @@ for i in servers:
     if i.find('td', class_='block ip has-launch'): continue
     name = i.find('h3', class_='name')
     ip = i.find('var', class_='tooltip')
+    try: a = ip.text
+    except: continue
     if aternos == 'да':
         if 'aternos' in ip.text: continue
         if ip.text.startswith('185'): continue
@@ -76,8 +78,6 @@ for i in servers:
     if need_no_online == 'да':
         if str(online) == '0': continue
     if 'Offline' in name.text or 'License only' in name.text: continue
-    try: a = ip.text
-    except: continue
     print('Сервер')
     print('-' * len(f'Название сервера: "{name.text}"'))
     print(f' Название сервера: "{name.text}"')
@@ -94,6 +94,8 @@ servers = servers_list.find_all('div', class_='server')
 for i in servers:
     name = i.find('h3', class_='name')
     ip = i.find('kbd')
+    try: a = ip.text
+    except: continue
     if aternos == 'да':
         if 'aternos' in ip.text: continue
         if ip.text.startswith('185'): continue
@@ -106,8 +108,6 @@ for i in servers:
             continue
     if need_no_online == 'да':
         if str(online) == '0': continue
-    try: a = ip.text
-    except: continue
     print('Сервер')
     print('-' * len(f'Название сервера: "{name.text}"'))
     print(f' Название сервера: "{name.text}"')
