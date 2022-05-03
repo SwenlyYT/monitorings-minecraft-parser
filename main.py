@@ -115,4 +115,5 @@ for i in servers:
     print(f' Онлайн: {online}')
     print(f' Айпи: {ip.text}')
     print('-' * len(f'Название сервера: "{name.text}"'))
-    
+
+input('Нажмите Enter для выхода\n')
