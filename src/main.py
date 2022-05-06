@@ -33,7 +33,7 @@ for i in mm_servers:
     except: continue
     if aternos == 'да':
         if 'aternos' in ip.text: continue
-        if ip.text.startswith('185') or ip.text.startswith('193'): continue
+        if ip.text.startswith('185') or ip.text.startswith('193') or ip.text.startswith('194'): continue
     version = i.find('td', class_='ver')
     if need_ver != 'all':
         if str(version.text) != need_ver: continue
@@ -70,7 +70,7 @@ for i in mr_servers:
     if ip.text in mm_servers: continue
     if aternos == 'да':
         if 'aternos' in ip.text: continue
-        if ip.text.startswith('185') or ip.text.startswith('193'): continue
+        if ip.text.startswith('185') or ip.text.startswith('193') or ip.text.startswith('194'): continue
     version = i.find('i', class_='fal fa-check-circle').find_parent()
     if need_ver != 'all':
         if str(version.text) != need_ver: continue
@@ -102,7 +102,7 @@ for i in ml_servers:
     if ip.text in mm_servers or ip.text in mr_servers: continue
     if aternos == 'да':
         if 'aternos' in ip.text: continue
-        if ip.text.startswith('185') or ip.text.startswith('193'): continue
+        if ip.text.startswith('185') or ip.text.startswith('193') or ip.text.startswith('194'): continue
     version = i.find('i', class_='far fa-check-circle').find_parent().text.split('версия')[0]
     if need_ver != 'all':
         if str(version) != need_ver: continue
